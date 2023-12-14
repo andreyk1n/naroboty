@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+   
+</head>
+<body>
+    
+
+    <div id="slider">
+        <input type="radio" name="slider" id="s1">
+        <input type="radio" name="slider" id="s2">
+        <input type="radio" name="slider" id="s3" checked>
+        <input type="radio" name="slider" id="s4">
+        <input type="radio" name="slider" id="s5">
+        <label for="s1" id="slide1">1</label>
+        <label for="s2" id="slide2">2</label>
+        <label for="s3" id="slide3">3</label>
+        <label for="s4" id="slide4">4</label>
+        <label for="s5" id="slide5">5</label>
+    
+        <!-- Додайте кнопки для перегортування -->
+        <button onclick="prevSlide()">Назад</button>
+        <button onclick="nextSlide()">Вперед</button>
+    </div>
+
+    <div class="slider-table">
+        <div class="sl-el1">1</div>
+        <div class="sl-el2">2</div>
+        <div class="sl-el3">3</div>
+        <div class="sl-el4">4</div>
+        <div class="sl-el5">5</div>
+    </div>
+
+
+    <script>
+        // Початковий індекс слайда (може бути будь-яким)
+        var currentIndex = 2;
+    
+        // Встановлення стилів для початкового активного слайда
+        updateSliderAndParagraphStyles();
+    
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + 5) % 5 || 5; // Враховуємо циклічність слайдів
+            updateSliderAndParagraphStyles();
+        }
+    
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % 5 || 5; // Враховуємо циклічність слайдів
+            updateSliderAndParagraphStyles();
+        }
+    
+        function updateSliderAndParagraphStyles() {
+            // Зняти стиль border з усіх елементів
+            for (var i = 1; i <= 5; i++) {
+                document.querySelector('.sl-el' + i).style.border = 'none';
+            }
+    
+            // Додати стиль border до відповідного елемента
+            document.querySelector('.sl-el' + currentIndex).style.border = '2px solid red';
+    
+            // Вибрати відповідний слайд
+            document.getElementById('s' + currentIndex).checked = true;
+        }
+    
+        // Запуск функції для встановлення стилів при завантаженні сторінки
+        window.onload = function () {
+            updateSliderAndParagraphStyles();
+        };
+    </script>
+    
+    
+    
+</body>
+</html> 
+
+
